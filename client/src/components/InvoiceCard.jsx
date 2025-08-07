@@ -2,19 +2,24 @@ import styles from "../styles/InvoiceCard.module.css";
 
 function InvoiceCard({ invoice }) {
 
+    const formattedAmount = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: invoice.currency || 'CAD' 
+    }).format(invoice.amount);
+
     return (
-        <div className={styles.card}>
+        <div className={styles.invoiceCard}>
         <div>
-            <h3>{invoice.clientName}</h3>
+            <p className={styles.invoiceClient}>{invoice.clientName}</p>
             <p><strong>Currency:</strong> {invoice.currency}</p>
             <p><strong>PO Number:</strong> {invoice.purchase_order_number}</p>
             <p><strong>Terms:</strong> {invoice.terms}</p>
             <p><strong>Notes:</strong> {invoice.notes}</p>
-            <p><strong>Invoice Number:</strong> {invoice.number}</p>
-            <p><strong>Due:</strong> {invoice.dueDate}</p>
+            <p><strong>Invoice #:</strong> {invoice.number}</p>
+            <p className={styles.invoiceDate}><strong>Due Date:</strong> {invoice.dueDate}</p>
         </div>
         <div>
-            <p>${invoice.amount}</p>
+            <p className={styles.invoiceAmount}>{formattedAmount}</p>
             <span className={`${styles.status} ${styles[invoice.status]}`}>
             {invoice.status}
             </span>
