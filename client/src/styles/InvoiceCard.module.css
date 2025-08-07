@@ -1,0 +1,36 @@
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.paid {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.pending {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.overdue {
+    background-color: #e04e4e;
+    color: #410d0c;
+}
+
+.open {
+    background-color: #83bfe9;
+    color: #0c3a4f;
+}

@@ -1,0 +1,21 @@
+
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.invoiceList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid red; */
+    /* gap: 10px; */
+    align-items: center;
+    justify-content: space-between;
+}

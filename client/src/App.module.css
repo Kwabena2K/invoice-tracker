@@ -1,0 +1,8 @@
+.app {
+    min-height: 100vh;   /* Full vertical height of the screen */
+    width: 100%;
+    background-color: #f4f4f4; /* Or any color you'd like */
+    padding: 2rem;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
