@@ -51,83 +51,80 @@ function NewInvoice ({onAdd}){
     
     return (
     <>
-    <form className={styles.formGroup} onSubmit={handleSubmit}>
-        <div className={styles.row}>
-            <div className={styles.inputGroup}>
-            <label>Client</label>
-            <input type="text" name="clientName" value={formData.clientName} onChange={handleChange} />
+        <form className={styles.formGroup} onSubmit={handleSubmit}>
+            <h2>Submit An Invoice</h2>
+            <div className={styles.row}>
+                <div className={styles.inputGroup}>
+                <label>Client</label>
+                <input type="text" name="clientName" value={formData.clientName} onChange={handleChange} />
+                </div>
+                <div className={styles.inputGroup}>
+                <label>Invoice Number</label>
+                <input type="text" name="number" value={formData.number} onChange={handleChange} />
+                </div>
             </div>
-            <div className={styles.inputGroup}>
-            <label>Invoice Number</label>
-            <input type="text" name="number" value={formData.number} onChange={handleChange} />
-            </div>
-        </div>
 
-        <div className={styles.row}>
-            <div className={styles.inputGroup}>
-            <label>Currency</label>
-            <select name="currency" value={formData.currency} onChange={handleChange}>
-                <option value="">Select a currency</option>
-                <option value="CAD">CAD</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="AUD">AUD</option>
-                <option value="GBP">GBP</option>
-            </select>
+            <div className={styles.row}>
+                <div className={styles.inputGroup}>
+                <label>Currency</label>
+                <select name="currency" value={formData.currency} onChange={handleChange}>
+                    <option value="">Select a currency</option>
+                    <option value="CAD">CAD</option>
+                    <option value="USD">USD</option>
+                </select>
+                </div>
+                <div className={styles.inputGroup}>
+                <label>PO Number</label>
+                <input type="text" name="purchase_order_number" value={formData.purchase_order_number} onChange={handleChange} />
+                </div>
             </div>
-            <div className={styles.inputGroup}>
-            <label>PO Number</label>
-            <input type="text" name="purchase_order_number" value={formData.purchase_order_number} onChange={handleChange} />
-            </div>
-        </div>
 
-        <div className={styles.row}>
-            <div className={styles.inputGroup}>
-            <label>Due Date</label>
-            <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+            <div className={styles.row}>
+                <div className={styles.inputGroup}>
+                <label>Due Date</label>
+                <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+                </div>
+                <div className={styles.inputGroup}>
+                <label>Terms</label>
+                <input type="text" name="terms" value={formData.terms} onChange={handleChange} />
+                </div>
             </div>
-            <div className={styles.inputGroup}>
-            <label>Terms</label>
-            <input type="text" name="terms" value={formData.terms} onChange={handleChange} />
+
+            <div className={styles.fullWidth}>
+                <label>Notes</label>
+                <textarea name="notes" value={formData.notes} onChange={handleChange} />
             </div>
-        </div>
 
-        <div className={styles.fullWidth}>
-            <label>Notes</label>
-            <textarea name="notes" value={formData.notes} onChange={handleChange} />
-        </div>
+            
+            {/* <div className={styles.itemTable}>
+                <div className={styles.itemHeader}>
+                <div>Item</div>
+                <div>Quantity</div>
+                <div>Unit Price</div>
+                <div>Total</div>
+                </div>
+                <div className={styles.itemRow}>
+                <input type="text" placeholder="Item" />
+                <input type="number" placeholder="Qty" />
+                <input type="number" placeholder="Unit Price" />
+                <input type="number" placeholder="Total" disabled />
+                </div>
+                <button type="button" className={styles.addItem}>+ Add Item</button>
+            </div> */}
 
-        
-        {/* <div className={styles.itemTable}>
-            <div className={styles.itemHeader}>
-            <div>Item</div>
-            <div>Quantity</div>
-            <div>Unit Price</div>
-            <div>Total</div>
+            <div className={styles.summary}>
+                <div>
+                <div>Tax:</div>
+                <div>Discount:</div>
+                <div>Total:</div>
+                </div>
             </div>
-            <div className={styles.itemRow}>
-            <input type="text" placeholder="Item" />
-            <input type="number" placeholder="Qty" />
-            <input type="number" placeholder="Unit Price" />
-            <input type="number" placeholder="Total" disabled />
+
+            <div className={styles.buttonRow}>
+                <button type="submit" className={styles.draftButton}>Save Draft</button>
+                <button type="submit" className={styles.sendButton}>Send Invoice</button>
             </div>
-            <button type="button" className={styles.addItem}>+ Add Item</button>
-        </div> */}
-
-        <div className={styles.summary}>
-            <div>
-            <div>Tax:</div>
-            <div>Discount:</div>
-            <div>Total:</div>
-            </div>
-        </div>
-
-        <div className={styles.buttonRow}>
-            <button type="submit" className={styles.draftButton}>Save Draft</button>
-            <button type="submit" className={styles.sendButton}>Send Invoice</button>
-        </div>
-    </form>
-
+        </form>
     </>
     
     );

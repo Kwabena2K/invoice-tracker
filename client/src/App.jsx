@@ -1,7 +1,6 @@
 import styles from "./App.module.css";
 import DashboardPage from "./pages/DashboardPage";
 import CreateInvoice from "./pages/CreateInvoice";
-import './global.css';
 
 
 

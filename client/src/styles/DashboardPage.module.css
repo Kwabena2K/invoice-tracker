@@ -5,8 +5,9 @@
     gap: 2rem;
     background-color: #f9f9f9;
     /* min-height: 100vh; */
-    min-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.253);
 }
 
 .header {
@@ -23,11 +24,15 @@
 
 .summaryCard {
     background: white;
-    padding: 0.5rem 5rem;
     border-radius: 8px;
     box-shadow: 10px 10px 9px rgba(0, 0, 0, 0.1);
     min-width: 150px;
+    gap: 50px;
     text-align: center;
+    flex: 1 1 200px;  
+    max-width: 300px;  
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.253);
 }
 
 .summaryTitle {
@@ -50,29 +55,27 @@
 }
 
 .all {
-    cursor: pointer;
-    
+    color:#000000;
 }
 
-/* .all:hover{
-    background-color: rgb(134, 80, 36);
-    color: rgb(75, 46, 16);
-} */
+.all:hover{
+    background-color: rgb(222, 133, 60);
+    color: rgb(65, 38, 17);
+    cursor: pointer;
+} 
 
 
 .paid {
-    background-color: #ffffff;
     color: #000000;
 }
 
 .paid:hover {
-    background-color: #d1e7dd;
+    background-color: #a4ddc3;
     color: #0f5132;
     cursor: pointer;
 }
 
 .pending {
-    background-color: #ffffff;
     color: #000000;
 }
 
@@ -83,7 +86,6 @@
 }
 
 .overdue {
-    background-color: #ffffff;
     color: #000000;
 }
 
@@ -94,7 +96,6 @@
 }
 
 .open {
-    background-color: #ffffff;
     color: #000000;
     cursor: pointer;
 }
