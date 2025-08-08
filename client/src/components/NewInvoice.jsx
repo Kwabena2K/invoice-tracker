@@ -16,29 +16,44 @@ function NewInvoice ({onAdd}){
 
     })
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); 
 
-    const newInvoice = {
-        ...formData,
-        id: Date.now(),
-        amount: parseFloat(formData.amount),
-    };
-    
-    setFormData({
-            clientName: "",
-            amount: "",
-            dueDate: "",
-            status: "pending",
-            currency: "",
-            purchase_order_number:"",
-            number:"",
-            notes:"",
-            terms:"",
-        })
+    try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            ...formData,
+            amount: parseFloat(formData.amount),
+        }),
+    });
 
-    onAdd(newInvoice); 
-    };
+    if (!response.ok) throw new Error('Failed to save invoice');
+
+    const savedInvoice = await response.json();
+
+    setFormData({
+        clientName: "",
+        amount: "",
+        dueDate: "",
+        status: "pending",
+        currency: "",
+        purchase_order_number:"",
+        number:"",
+        notes:"",
+        terms:"",
+    });
+
+    onAdd(savedInvoice); // pass saved invoice from backend
+
+    } catch (error) {
+        console.error('Error submitting invoice:', error);
+    // Optionally show an error message to user here
+        }
+        };
     
     const handleChange = (e) => {
         const { name, value } = e.target;
