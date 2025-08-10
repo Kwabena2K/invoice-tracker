@@ -1,60 +1,54 @@
 import React, { useState } from "react";
 import styles from "../styles/NewInvoice.module.css";
 
-
-function NewInvoice ({onAdd}){
+function NewInvoice({ onAdd }) {
     const [formData, setFormData] = useState({
-            clientName: "",
-            amount: "",
-            dueDate: "",
-            status: "pending",
-            currency: "",
-            purchase_order_number:"",
-            number:"",
-            notes:"",
-            terms:"",
-
-    })
-
-    const handleSubmit = async (e) => {
-        e.preventDefault(); 
-
-    try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            ...formData,
-            amount: parseFloat(formData.amount),
-        }),
-    });
-
-    if (!response.ok) throw new Error('Failed to save invoice');
-
-    const savedInvoice = await response.json();
-
-    setFormData({
-        clientName: "",
+        client_name: "",
         amount: "",
-        dueDate: "",
+        due_date: "",
         status: "pending",
         currency: "",
-        purchase_order_number:"",
-        number:"",
-        notes:"",
-        terms:"",
+        purchase_order_number: "",
+        number: "",
+        notes: "",
+        terms: "",
     });
 
-    onAdd(savedInvoice); // pass saved invoice from backend
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    } catch (error) {
-        console.error('Error submitting invoice:', error);
-    // Optionally show an error message to user here
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formData,
+                    amount: parseFloat(formData.amount),
+                }),
+            });
+
+            if (!response.ok) throw new Error("Failed to save invoice");
+
+            const savedInvoice = await response.json();
+
+            setFormData({
+                client_name: "",
+                amount: "",
+                due_date: "",
+                status: "pending",
+                currency: "",
+                purchase_order_number: "",
+                number: "",
+                notes: "",
+                terms: "",
+            });
+
+            onAdd(savedInvoice);
+        } catch (error) {
+            console.error("Error submitting invoice:", error);
         }
-        };
-    
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -63,45 +57,44 @@ function NewInvoice ({onAdd}){
         }));
     };
 
-    
     return (
-    <>
         <form className={styles.formGroup} onSubmit={handleSubmit}>
             <h2>Submit An Invoice</h2>
+
             <div className={styles.row}>
                 <div className={styles.inputGroup}>
-                <label>Client</label>
-                <input type="text" name="clientName" value={formData.clientName} onChange={handleChange} />
+                    <label>Client</label>
+                    <input type="text" name="client_name" value={formData.client_name} onChange={handleChange} />
                 </div>
                 <div className={styles.inputGroup}>
-                <label>Invoice Number</label>
-                <input type="text" name="number" value={formData.number} onChange={handleChange} />
+                    <label>Invoice Number</label>
+                    <input type="text" name="number" value={formData.number} onChange={handleChange} />
                 </div>
             </div>
 
             <div className={styles.row}>
                 <div className={styles.inputGroup}>
-                <label>Currency</label>
-                <select name="currency" value={formData.currency} onChange={handleChange}>
-                    <option value="">Select a currency</option>
-                    <option value="CAD">CAD</option>
-                    <option value="USD">USD</option>
-                </select>
+                    <label>Currency</label>
+                    <select name="currency" value={formData.currency} onChange={handleChange}>
+                        <option value="">Select a currency</option>
+                        <option value="CAD">CAD</option>
+                        <option value="USD">USD</option>
+                    </select>
                 </div>
                 <div className={styles.inputGroup}>
-                <label>PO Number</label>
-                <input type="text" name="purchase_order_number" value={formData.purchase_order_number} onChange={handleChange} />
+                    <label>PO Number</label>
+                    <input type="text" name="purchase_order_number" value={formData.purchase_order_number} onChange={handleChange} />
                 </div>
             </div>
 
             <div className={styles.row}>
                 <div className={styles.inputGroup}>
-                <label>Due Date</label>
-                <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+                    <label>Due Date</label>
+                    <input type="date" name="due_date" value={formData.due_date} onChange={handleChange} />
                 </div>
                 <div className={styles.inputGroup}>
-                <label>Terms</label>
-                <input type="text" name="terms" value={formData.terms} onChange={handleChange} />
+                    <label>Terms</label>
+                    <input type="text" name="terms" value={formData.terms} onChange={handleChange} />
                 </div>
             </div>
 
@@ -110,28 +103,11 @@ function NewInvoice ({onAdd}){
                 <textarea name="notes" value={formData.notes} onChange={handleChange} />
             </div>
 
-            
-            {/* <div className={styles.itemTable}>
-                <div className={styles.itemHeader}>
-                <div>Item</div>
-                <div>Quantity</div>
-                <div>Unit Price</div>
-                <div>Total</div>
-                </div>
-                <div className={styles.itemRow}>
-                <input type="text" placeholder="Item" />
-                <input type="number" placeholder="Qty" />
-                <input type="number" placeholder="Unit Price" />
-                <input type="number" placeholder="Total" disabled />
-                </div>
-                <button type="button" className={styles.addItem}>+ Add Item</button>
-            </div> */}
-
             <div className={styles.summary}>
                 <div>
-                <div>Tax:</div>
-                <div>Discount:</div>
-                <div>Total:</div>
+                    <div>Tax:</div>
+                    <div>Discount:</div>
+                    <div>Total:</div>
                 </div>
             </div>
 
@@ -140,10 +116,7 @@ function NewInvoice ({onAdd}){
                 <button type="submit" className={styles.sendButton}>Send Invoice</button>
             </div>
         </form>
-    </>
-    
     );
-
 }
 
 export default NewInvoice;
