@@ -23,8 +23,20 @@
 
         
 
-        const handleAddInvoice = (newInvoice) => {
-            setInvoices((prevInvoices) => [newInvoice, ...prevInvoices]);
+        const handleAddInvoice = async (formData) => {
+            try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...formData, amount: parseFloat(formData.amount) }),
+            });
+            if (!response.ok) throw new Error("Failed to create invoice");
+
+            
+            await fetchInvoices();
+            } catch (error) {
+            console.error(error);
+            }
         };
 
     const totalOpen = invoices.filter(inv => inv.status === 'open').length;

@@ -44,6 +44,7 @@ function NewInvoice({ onAdd }) {
             });
 
             onAdd(savedInvoice);
+            await fetchInvoices();
         } catch (error) {
             console.error("Error submitting invoice:", error);
         }
