@@ -34,6 +34,20 @@ import styles from "../styles/NewInvoice.module.css";
     };
 
 
+    // Making sure all fields are entered before sending invoice
+    function isFormValid(formData) {
+        return (
+            formData.client_name.trim() !== "" &&
+            formData.number.trim() !== "" &&
+            formData.currency.trim() !== "" &&
+            formData.status.trim() !== "" &&
+            formData.due_date.trim() !== "" &&
+            formData.amount !== "" &&
+            !isNaN(parseFloat(formData.amount)) &&
+            parseFloat(formData.amount) > 0
+        );
+    }
+
     return (
         <form className={styles.formGroup} onSubmit={handleSubmit}>
             <h2>Submit An Invoice</h2>
@@ -42,13 +56,13 @@ import styles from "../styles/NewInvoice.module.css";
             <div className={styles.row}>
                 <div className={styles.inputGroup}>
                     <label>Client</label>
-                    <input type="text" name="client_name" required value={formData.client_name} onChange={handleChange} />
+                    <input type="text" placeholder="Enter a Client Name (e.g Apple)" name="client_name" required value={formData.client_name} onChange={handleChange} />
                 </div>
 
             {/* Invoice label */}
                 <div className={styles.inputGroup}>
                     <label>Invoice Number</label>
-                    <input type="text" name="number" required value={formData.number} onChange={handleChange} />
+                    <input type="text" name="number" placeholder="Enter an Invoice Number (e.g Invoice #12345)" required value={formData.number} onChange={handleChange} />
                 </div>
             </div>
 
@@ -75,7 +89,7 @@ import styles from "../styles/NewInvoice.module.css";
                 </div>
                 <div className={styles.inputGroup}>
                     <label>PO Number</label>
-                    <input type="text" name="purchase_order_number" required value={formData.purchase_order_number} onChange={handleChange} />
+                    <input type="text" name="purchase_order_number" required placeholder="PO Number" value={formData.purchase_order_number} onChange={handleChange} />
                 </div>
                 
             </div>
@@ -89,14 +103,14 @@ import styles from "../styles/NewInvoice.module.css";
 
                 <div className={styles.inputGroup}>
                     <label>Amount</label>
-                    <input type="number" name="amount" required value={formData.amount} onChange={handleChange} />
+                    <input type="number" placeholder="Please enter an amount" name="amount" required value={formData.amount} onChange={handleChange} />
                 </div>
             </div>
 
             {/* Notes label */}
             <div className={styles.fullWidth}>
                 <label>Notes</label>
-                <textarea name="notes" value={formData.notes} onChange={handleChange} />
+                <textarea name="notes" placeholder="Please enter any additional notes" value={formData.notes} onChange={handleChange} />
             </div>
 
             {/* Summary label */}
@@ -109,7 +123,7 @@ import styles from "../styles/NewInvoice.module.css";
             </div>
 
             <div className={styles.buttonRow}>
-                <button type="submit" className={styles.sendButton}>Send Invoice</button>
+                <button type="submit" className={styles.sendButton} disabled={!isFormValid(formData)}>Send Invoice</button>
             </div>
         </form>
         );

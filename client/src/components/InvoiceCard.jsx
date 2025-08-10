@@ -1,6 +1,6 @@
 import styles from "../styles/InvoiceCard.module.css";
 
-    function InvoiceCard({ invoice }) {
+    function InvoiceCard({ invoice, onDelete }) {
         const currencyCode = invoice.currency || "CAD";
         const amountNum = Number(invoice.amount) || 0;
 
@@ -10,6 +10,13 @@ import styles from "../styles/InvoiceCard.module.css";
             currency: currencyCode,
             currencyDisplay: "code",
         }).format(amountNum);
+
+          const handleDeleteClick = () => {
+            if (window.confirm(`Delete invoice #${invoice.number}? This action cannot be undone.`)) {
+            onDelete(invoice.id);
+            }
+        };
+
 
         // Handle both camelCase and snake_case for react and rails server
         const clientName = invoice.clientName || invoice.client_name || "Unknown Client";
@@ -39,6 +46,7 @@ import styles from "../styles/InvoiceCard.module.css";
                 {invoice.status || "pending"}
                 </span>
             </div>
+            <button className={styles.deleteButton} onClick={handleDeleteClick} aria-label={`Delete invoice ${invoice.number}`}>Delete</button>
         </div>
     );
 }
