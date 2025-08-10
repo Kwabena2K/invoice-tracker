@@ -29,7 +29,6 @@ import styles from "../styles/InvoiceCard.module.css";
                 <p className={styles.invoiceClient}>{clientName}</p>
                 <p><strong>Currency:</strong> {invoice.currency || "N/A"}</p>
                 <p><strong>PO Number:</strong> {invoice.purchase_order_number || "N/A"}</p>
-                <p><strong>Terms:</strong> {invoice.terms || "N/A"}</p>
                 <p><strong>Notes:</strong> {invoice.notes || "None"}</p>
                 <p><strong>Invoice #:</strong> {invoice.number || "N/A"}</p>
                 <p className={styles.invoiceDate}><strong>Due Date:</strong> {formattedDueDate}</p>
