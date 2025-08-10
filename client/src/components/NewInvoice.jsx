@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/NewInvoice.module.css";
 
-function NewInvoice({ onAdd }) {
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         client_name: "",
         amount: "",
         due_date: "",
@@ -12,51 +11,29 @@ function NewInvoice({ onAdd }) {
         number: "",
         notes: "",
         terms: "",
-    });
+    };
+
+    function NewInvoice({ onAdd }) {
+    const [formData, setFormData] = useState(initialFormData);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    ...formData,
-                    amount: parseFloat(formData.amount),
-                }),
-            });
+        // Call onAdd to send to (DashboardPage)
+        await onAdd(formData);
 
-            if (!response.ok) throw new Error("Failed to save invoice");
-
-            const savedInvoice = await response.json();
-
-            setFormData({
-                client_name: "",
-                amount: "",
-                due_date: "",
-                status: "pending",
-                currency: "",
-                purchase_order_number: "",
-                number: "",
-                notes: "",
-                terms: "",
-            });
-
-            onAdd(savedInvoice);
-            await fetchInvoices();
-        } catch (error) {
-            console.error("Error submitting invoice:", error);
-        }
+        // Reset form after submit
+        setFormData(initialFormData);
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
-            ...prev,
-            [name]: value,
+        ...prev,
+        [name]: value,
         }));
     };
+
 
     return (
         <form className={styles.formGroup} onSubmit={handleSubmit}>
@@ -113,11 +90,11 @@ function NewInvoice({ onAdd }) {
             </div>
 
             <div className={styles.buttonRow}>
-                <button type="submit" className={styles.draftButton}>Save Draft</button>
                 <button type="submit" className={styles.sendButton}>Send Invoice</button>
             </div>
         </form>
-    );
-}
+        );
+    }
+
 
 export default NewInvoice;

@@ -28,12 +28,15 @@
             const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, amount: parseFloat(formData.amount) }),
+                body: JSON.stringify({ invoice: {
+                        ...formData,
+                    amount: parseFloat(formData.amount),} 
+                }),
             });
             if (!response.ok) throw new Error("Failed to create invoice");
 
-            
-            await fetchInvoices();
+            const savedInvoice = await response.json();
+            setInvoices(prevInvoices => [savedInvoice, ...prevInvoices]);
             } catch (error) {
             console.error(error);
             }
@@ -77,7 +80,7 @@
                 </div>
             </div>
 
-            <NewInvoice onAdd={handleAddInvoice} fetchInvoices={fetchInvoices} />
+            <NewInvoice onAdd={handleAddInvoice} />
             <div className={styles.invoiceList}>
                 {[...invoices]
                     .sort((a, b) => {
