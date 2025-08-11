@@ -3,13 +3,20 @@ import styles from "../styles/InvoiceCard.module.css";
     function InvoiceCard({ invoice, onDelete }) {
         const currencyCode = invoice.currency || "CAD";
         const amountNum = Number(invoice.amount) || 0;
+        
 
         // Format amount with currency symbol
-        const formattedAmount = new Intl.NumberFormat("en-US", {
+        const formattedAmount = new Intl.NumberFormat( 
+            currencyCode === "USD" ? "en-US" : 
+            currencyCode === "CAD" ? "en-CA" : 
+            "en-US", {
             style: "currency",
             currency: currencyCode,
-            currencyDisplay: "code",
+            currencyDisplay: "symbol",
         }).format(amountNum);
+
+        const displayAmount = `${formattedAmount} ${currencyCode}`;
+
 
           const handleDeleteClick = () => {
             if (window.confirm(`Delete invoice #${invoice.number}? This action cannot be undone.`)) {
@@ -41,11 +48,14 @@ import styles from "../styles/InvoiceCard.module.css";
                 <p><strong>Invoice #:</strong> {invoice.number || "N/A"}</p>
                 <p className={styles.invoiceDate}><strong>Due Date:</strong> {formattedDueDate}</p>
             </div>
-            <div>
-                <p className={styles.invoiceAmount}>{formattedAmount}</p>
-                <span className={`${styles.status} ${styles[invoice.status || "pending"]}`}>
-                {invoice.status || "pending"}
-                </span>
+            <div className={styles.moneyBadge}>
+                <p className={styles.invoiceAmount}>{displayAmount}</p>
+                <div className={styles.moneyBadge}>
+                    <span className={`${styles.status} ${styles[invoice.status || "pending"]}`}>
+                        {invoice.status || "pending"}
+                    </span>  
+                </div>
+                
             </div>
             
         </div>

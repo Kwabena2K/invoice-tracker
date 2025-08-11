@@ -98,11 +98,7 @@ textarea {
     font-weight: 500;
 }
 
-.deleteButton {
-    background: none;
-    border: none;
-    color: #f30000;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 0.5rem;
+.spinner {
+    border: 2px solid red;
+    justify-content: center;
 }

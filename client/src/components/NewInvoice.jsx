@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/NewInvoice.module.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
     const initialFormData = {
         client_name: "",
@@ -50,7 +51,7 @@ import styles from "../styles/NewInvoice.module.css";
 
     return (
         <form className={styles.formGroup} onSubmit={handleSubmit}>
-            <h2>Submit An Invoice</h2>
+            <h2>Submit Invoice</h2>
 
             {/* Client label */}
             <div className={styles.row}>
@@ -62,7 +63,7 @@ import styles from "../styles/NewInvoice.module.css";
             {/* Invoice label */}
                 <div className={styles.inputGroup}>
                     <label>Invoice Number</label>
-                    <input type="text" name="number" placeholder="Enter an Invoice Number (e.g Invoice #12345)" required value={formData.number} onChange={handleChange} />
+                    <input type="text" name="number" placeholder="Enter an Invoice Number (e.g Invoice #12345)" required  value={formData.number} onChange={handleChange} />
                 </div>
             </div>
 
@@ -103,7 +104,7 @@ import styles from "../styles/NewInvoice.module.css";
 
                 <div className={styles.inputGroup}>
                     <label>Amount</label>
-                    <input type="number" placeholder="Please enter an amount" name="amount" required value={formData.amount} onChange={handleChange} />
+                    <input type="number" placeholder="Please enter an amount" name="amount" min={0} required  value={formData.amount} onChange={handleChange} />
                 </div>
             </div>
 
@@ -111,15 +112,6 @@ import styles from "../styles/NewInvoice.module.css";
             <div className={styles.fullWidth}>
                 <label>Notes</label>
                 <textarea name="notes" placeholder="Please enter any additional notes" value={formData.notes} onChange={handleChange} />
-            </div>
-
-            {/* Summary label */}
-            <div className={styles.summary}>
-                <div>
-                    <div>Tax:</div>
-                    <div>Discount:</div>
-                    <div>Total:</div>
-                </div>
             </div>
 
             <div className={styles.buttonRow}>

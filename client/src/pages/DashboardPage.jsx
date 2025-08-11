@@ -69,23 +69,23 @@
             <h1>Invoices</h1>
             <div className={styles.container}>
                 <div className={`${styles.summaryCard} ${styles.all}`}>
-                    <h4>All invoices ({invoices.length})</h4>
+                    <h5>All invoices ({invoices.length})</h5>
                     <p>Total: ${totalAmount.toFixed(2)}</p>
                 </div>
                 <div className={`${styles.summaryCard} ${styles.open}`}>
-                    <h4>Open Invoices ({totalOpen})</h4>
+                    <h5>Open Invoices ({totalOpen})</h5>
                     <p>Total: ${totalOpenAmount.toFixed(2)}</p>
                 </div>
                 <div className={`${styles.summaryCard} ${styles.overdue}`}>
-                    <h4>Overdue ({totalOverdue})</h4>
+                    <h5>Overdue ({totalOverdue})</h5>
                     <p>Total: ${totalOverdueAmount.toFixed(2)}</p>
                 </div>
                 <div className={`${styles.summaryCard} ${styles.pending}`}>
-                    <h4>Pending ({totalPending})</h4>
+                    <h5>Pending ({totalPending})</h5>
                     <p>Total: ${totalPendingAmount.toFixed(2)}</p>
                 </div>
                 <div className={`${styles.summaryCard} ${styles.paid}`}>
-                    <h4>Paid ({totalPaid})</h4>
+                    <h5>Paid ({totalPaid})</h5>
                     <p>Total: ${totalPaidAmount.toFixed(2)}</p>
                 </div>
             </div>

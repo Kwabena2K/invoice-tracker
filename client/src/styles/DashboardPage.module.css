@@ -30,9 +30,10 @@
     gap: 50px;
     text-align: center;
     flex: 1 1 200px;  
-    max-width: 300px;  
+    max-width: 500px;  
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.253);
+    padding-top: 1.5rem;
 }
 
 .summaryTitle {
@@ -56,55 +57,43 @@
 
 .all {
     color:#000000;
+    background-color: rgb(222, 133, 60);
 }
 
-.all:hover{
-    background-color: rgb(222, 133, 60);
-    color: rgb(65, 38, 17);
+.all:hover, .paid:hover, .pending:hover, .open:hover, .overdue:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     cursor: pointer;
+    transition: 0.3s;
 } 
 
 
 .paid {
     color: #000000;
+    background-color: #a4ddc3;
 }
 
-.paid:hover {
-    background-color: #a4ddc3;
-    color: #0f5132;
-    cursor: pointer;
-}
+
 
 .pending {
     color: #000000;
+    background-color: #fff3cd;
 }
 
-.pending:hover {
-    background-color: #fff3cd;
-    color: #664d03;
-    cursor: pointer;
-}
+
 
 .overdue {
     color: #000000;
+    background-color: #e04e4e;
 }
 
-.overdue:hover {
-    background-color: #e04e4e;
-    color: #410e0d;
-    cursor: pointer;
-}
 
 .open {
     color: #000000;
     cursor: pointer;
+    background-color: #83bfe9;
 }
 
-.open:hover {
-    background-color: #83bfe9;
-    color: #0c3a4f;
-    cursor: pointer;
-}
 
 .invoiceList {
     display: flex;
