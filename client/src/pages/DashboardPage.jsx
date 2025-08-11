@@ -22,6 +22,16 @@
         }, []);
 
         
+        const handleDeleteInvoice = async (invoiceId) => {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices/${invoiceId}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) throw new Error("Failed to delete invoice");
+
+            
+            setInvoices(prev => prev.filter(inv => inv.id !== invoiceId));
+
+        };
 
         const handleAddInvoice = async (formData) => {
             try {
@@ -89,7 +99,7 @@
                         return new Date(a.date) - new Date(b.date);
                     })
                     .map((invoice) => (
-                        <InvoiceCard key={invoice.id} invoice={invoice} />
+                        <InvoiceCard key={invoice.id} invoice={invoice} onDelete={handleDeleteInvoice}/>
                     ))}
             </div>
         </div>

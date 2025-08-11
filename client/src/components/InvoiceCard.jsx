@@ -33,6 +33,7 @@ import styles from "../styles/InvoiceCard.module.css";
     return (
         <div className={styles.invoiceCard}>
             <div>
+                <button className={styles.deleteButton} onClick={handleDeleteClick} aria-label={`Delete invoice ${invoice.number}`}>Delete</button>
                 <p className={styles.invoiceClient}>{clientName}</p>
                 <p><strong>Currency:</strong> {invoice.currency || "N/A"}</p>
                 <p><strong>PO Number:</strong> {invoice.purchase_order_number || "N/A"}</p>
@@ -46,7 +47,7 @@ import styles from "../styles/InvoiceCard.module.css";
                 {invoice.status || "pending"}
                 </span>
             </div>
-            <button className={styles.deleteButton} onClick={handleDeleteClick} aria-label={`Delete invoice ${invoice.number}`}>Delete</button>
+            
         </div>
     );
 }

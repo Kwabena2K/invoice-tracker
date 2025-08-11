@@ -97,3 +97,12 @@ textarea {
     font-family: 'Roboto' sans-serif;
     font-weight: 500;
 }
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #f30000;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
