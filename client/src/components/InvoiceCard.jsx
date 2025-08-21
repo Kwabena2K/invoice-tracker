@@ -1,5 +1,6 @@
 import styles from "../styles/InvoiceCard.module.css";
 
+
     function InvoiceCard({ invoice, onDelete }) {
         const currencyCode = invoice.currency || "CAD";
         const amountNum = Number(invoice.amount) || 0;
@@ -57,7 +58,6 @@ import styles from "../styles/InvoiceCard.module.css";
                 </div>
                 
             </div>
-            
         </div>
     );
 }

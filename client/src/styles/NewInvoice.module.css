@@ -102,3 +102,22 @@ textarea {
     border: 2px solid red;
     justify-content: center;
 }
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 1.6rem;
+}
+
+.slogan {
+    font-weight: 300;
+    max-width: 36rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}

@@ -65,7 +65,7 @@
     const statusOrder = { overdue: 1, open: 2, pending: 3, paid: 4 };
 
     return (
-        <div className={styles.dashboard}>
+        <div className="flex flex-col p-8 gap-8 bg-#f9f9f9 mx-auto my-0 border-1px border-solid border-rgba(0,0,0,0.253)">
             <h1>Invoices</h1>
             <div className={styles.container}>
                 <div className={`${styles.summaryCard} ${styles.all}`}>
