@@ -2,6 +2,8 @@
     import InvoiceCard from "../components/InvoiceCard";
     import styles from "../styles/DashboardPage.module.css";
     import NewInvoice from "../components/NewInvoice";
+    import { Link} from "react-router-dom";
+    import clearPayLogo from "../assets/clearpayLogo.png";
 
     function DashboardPage() {
         const [invoices, setInvoices] = useState([]);
@@ -65,7 +67,29 @@
     const statusOrder = { overdue: 1, open: 2, pending: 3, paid: 4 };
 
     return (
-        <div className="flex flex-col p-8 gap-8 bg-#f9f9f9 mx-auto my-0 border-1px border-solid border-rgba(0,0,0,0.253)">
+        <>
+         <div className="navbar bg-base-200 text-white shadow-sm">
+            
+            <div className="logo mb-2 md:mb-0">
+                <img src={clearPayLogo} className="h-20 md:h-40" />
+            </div>
+            <div className="flex-none">
+                <ul className="menu menu-horizontal px-20 gap-8 text-lg md:text-md">
+                    <li>
+                        <Link to="/home" className="text-white !no-underline hover:text-black ">
+                        Home
+                        </Link>
+                    </li>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="input bg-white text-black input-primary input-bordered w-24 md:w-auto"
+                    />
+                </ul>
+            </div>
+        </div>
+        
+        <div className="flex flex-col p-8 gap-8 bg-base-200 text-white mx-auto my-0 border-1px border-solid border-rgba(0,0,0,0.253)">
             <h1>Invoices</h1>
             <div className={styles.container}>
                 <div className={`${styles.summaryCard} ${styles.all}`}>
@@ -103,6 +127,7 @@
                     ))}
             </div>
         </div>
+        </>
     );
 }
 

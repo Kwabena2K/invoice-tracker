@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styles from "../styles/NewInvoice.module.css";
+import  { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
     const initialFormData = {
@@ -51,12 +50,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
     return (
         <>
-
-        <form className="fieldset bg-base-200 border-base-300 rounded-box border p-6 w-4/5 max-w-5xl mx-auto" onSubmit={handleSubmit}>
+        <form className="fieldset bg-base-200 text-white border-base-300 rounded-box border p-6 w-4/5 max-w-5xl mx-auto" onSubmit={handleSubmit}>
             <h2>Submit Invoice</h2>
                 <div className="flex flex-col gap-6">
-                    
-
                     {/* Client label */}
                         <div className="flex flex-col flex-1">
                             <label>Client</label>
@@ -71,7 +67,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
                     {/* Currency and status label */}
                     <div className="flex flex-col flex-1">
-                        <div className={styles.inputGroup}>
+                        <div>
                             <label>Currency</label>
                                 <select className="input w-full" name="currency" required value={formData.currency} onChange={handleChange}>
                                     <option value="">Select a currency</option>
@@ -117,7 +113,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                     </div>
 
                     <div className="flex flex-col flex-1">
-                        <button type="submit" className={styles.sendButton} disabled={!isFormValid(formData)}>Send Invoice</button>
+                        <button type="submit" className="btn btn-primary"  disabled={!isFormValid(formData)}>Send Invoice</button>
                     </div>
                 </div>
         </form>

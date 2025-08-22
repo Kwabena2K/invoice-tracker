@@ -1,22 +1,33 @@
-import styles from "../styles/NewInvoice.module.css";
-import clearPayLogo from "../assets/clearpay.png";
-import { useState } from "react";
+import clearPayLogo from "../assets/clearpayLogo.png";
+import {Routes, Route, Link} from "react-router-dom"
 
 function Home() {
 
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
-    const closeMobileMenu = () => {
-        setIsMobileMenuOpen(false);
-    };
 
     return (
-            <section id="home">
+        <>
+        <div className="navbar bg-base-200 text-white shadow-sm">
+            
+            <div className="logo mb-2 md:mb-0">
+                <img src={clearPayLogo} className="h-20 md:h-40" />
+            </div>
+            <div className="flex-none">
+                <ul className="menu menu-horizontal px-20 gap-8 text-lg md:text-md">
+                    <li>
+                        <Link to="/dashboard" className="text-white !no-underline hover:text-black ">
+                        Dashboard
+                        </Link>
+                    </li>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="input bg-white text-black input-primary input-bordered w-24 md:w-auto"
+                    />
+                </ul>
+            </div>
+        </div>
+        {/* <section id="home">
             <header className="relative bg-white bg-center h-screen">
                 <div className="absolute inset-0 bg-opacity-50"></div>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4 relative">
@@ -42,7 +53,8 @@ function Home() {
                 </div>
                 <div className={`fixed inset-0 bg-black bg-opacity-50 z-20 ${isMobileMenuOpen ? 'block' : 'hidden'}`} onClick={closeMobileMenu}></div>
             </header>
-        </section>
+        </section> */}
+        </>
     );
 }
 export default Home;
