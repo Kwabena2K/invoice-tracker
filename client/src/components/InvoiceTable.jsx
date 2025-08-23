@@ -2,13 +2,13 @@ import clearPayLogo from "../assets/clearpay.png";
 function InvoiceTable({ invoices, onDelete }) {
 	let runningBalance = 0;
 	return (
-		<div className="overflow-x-auto w-3/4 mx-auto rounded-lg border-2 border-blue-500">
+		<div className="overflow-x-auto w-3/4 mx-auto rounded-lg border-2 border-info">
 			<table className="table w-full bg-white text-black ">
 				<thead>
 					<tr className="uppercase text-center text-black">
-						{/* 
-				<th>Logo</th>
-				*/}
+								{/* 
+						<th>Logo</th>
+						*/}
 						<th className="border border-gray-400">Client</th>
 						<th className="border border-gray-400">Currency</th>
 						<th className="border border-gray-400">PO Number</th>
