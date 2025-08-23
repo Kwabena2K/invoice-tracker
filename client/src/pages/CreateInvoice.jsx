@@ -1,4 +1,3 @@
-import styles from "../styles/InvoiceCard.module.css";
 import NewInvoice from "../components/NewInvoice";
 
 function CreateInvoice() {
