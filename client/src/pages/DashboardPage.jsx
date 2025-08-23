@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import InvoiceTable from "../components/InvoiceTable";
-import styles from "../styles/DashboardPage.module.css";
 import NewInvoice from "../components/NewInvoice";
 import { Link } from "react-router-dom";
 import clearPayLogo from "../assets/clearpayLogo.png";
@@ -146,7 +145,7 @@ function DashboardPage() {
             {/* Invoice Table & New Invoice */}
             <div className="flex flex-col p-8 gap-8 mx-auto my-0 border border-solid border-black/25">
                 <NewInvoice onAdd={handleAddInvoice} />
-                <div className={styles.invoiceList}>
+                <div>
                     <InvoiceTable invoices={sortedInvoices} onDelete={handleDeleteInvoice} />
                 </div>
             </div>
