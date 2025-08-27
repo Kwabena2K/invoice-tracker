@@ -36,7 +36,7 @@ function Home() {
                             Dashboard
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/pricing" className="text-white !no-underline">
                             Pricing
                             </Link>
@@ -50,7 +50,7 @@ function Home() {
                             <Link to="/login" className="text-white !no-underline">
                             Login
                             </Link>
-                        </li>
+                        </li> */}
                         <input
                             type="text"
                             placeholder="Search"
