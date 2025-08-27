@@ -1,7 +1,7 @@
 import clearPayLogo from "../assets/clearpayLogo.png";
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalculator, faClock, faFileInvoice, faWallet } from '@fortawesome/free-solid-svg-icons'
+import { faCalculator, faClock, faFileInvoice, faFolderOpen, faWallet } from '@fortawesome/free-solid-svg-icons'
 
 // testing bg images
 import backgroundImage from "../assets/hero-bg-2.jpg"
@@ -106,7 +106,7 @@ function Home() {
                     </div>
                     <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
-                            <FontAwesomeIcon icon={faWallet} size="3x"/>
+                            <FontAwesomeIcon icon={faFolderOpen} size="3x"/>
                             <h2 className="card-title">Organized Records</h2>
                             <p>Keep every invoice and payment neatly organized in one secure dashboard.</p>
                         </div>
