@@ -87,28 +87,28 @@ function Home() {
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faFileInvoice} size="3x"/>
                             <h2 className="card-title">Create & Send Invoices</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                            <p>Create professional invoices instantly, with flexible options for manual entry or PDF upload.</p>
                         </div>
                     </div>
                     <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                              <FontAwesomeIcon icon={faClock} size="3x"/>
                             <h2 className="card-title">Track Payment Status</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                            <p>Stay on top of deadlines with clear sorting and reminders for upcoming payments.</p>
                         </div>
                     </div>
                     <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faCalculator} size="3x" />
                             <h2 className="card-title">Automatic Running Balance</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                            <p>Always know where you stand with automatic balance updates after every invoice or payment.</p>
                         </div>
                     </div>
                     <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faWallet} size="3x"/>
-                            <h2 className="card-title">Multiple Currency Support</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                            <h2 className="card-title">Organized Records</h2>
+                            <p>Keep every invoice and payment neatly organized in one secure dashboard.</p>
                         </div>
                     </div>
             </div>
