@@ -49,7 +49,7 @@ function NewInvoice({ onAdd }) {
 
     return (
         <>
-            <form className="fieldset bg-base-200 text-white border-gray-300 rounded-box border p-6 w-2/5 max-w-5xl mx-auto" onSubmit={handleSubmit}>
+            <form className="fieldset bg-gray-800 text-white rounded-box p-6 w-2/5 max-w-xl mx-auto" onSubmit={handleSubmit}>
                 <h2 className="text-2xl mb-4">Submit Invoice</h2>
                 <div className="flex flex-col gap-6">
                     {/* Client label */}

@@ -1,7 +1,7 @@
-import clearPayLogo from "../assets/clearpayLogo.png";
+import logo from "../assets/balanceBookLogo.png";
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalculator, faClock, faFileInvoice, faFolderOpen, faWallet } from '@fortawesome/free-solid-svg-icons'
+import { faCalculator, faClock, faFileInvoice, faFolderOpen} from '@fortawesome/free-solid-svg-icons'
 
 // testing bg images
 import backgroundImage from "../assets/hero-bg-2.jpg"
@@ -25,38 +25,17 @@ function Home() {
     return (
         <div className="bg-gray-900">
             <div className="navbar bg-gray-800 text-white shadow-sm">
-                
-                <div className="flex-1">
-                    <img src={clearPayLogo} className="h-20 md:h-40" />
+                <div className="flex-1 h-25 flex items-center">
+                    <img src={logo} className="h-42 w-auto" />
                 </div>
                 <div className="flex gap-2">
-                    <ul className="menu menu-horizontal gap-8 text-lg md:text-md">
+                    <ul className="menu menu-horizontal gap-8 text-lg md:text-md items-center">
                         <li>
-                            <Link to="/dashboard" className="text-white !no-underline">
+                        <Link to="/dashboard" className="text-white !no-underline">
                             Dashboard
-                            </Link>
+                        </Link>
                         </li>
-                        {/* <li>
-                            <Link to="/pricing" className="text-white !no-underline">
-                            Pricing
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/about" className="text-white !no-underline">
-                            About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/login" className="text-white !no-underline">
-                            Login
-                            </Link>
-                        </li> */}
-                        <input
-                            type="text"
-                            placeholder="Search"
-                            className="input bg-white text-black input-info input-bordered w-24 md:w-auto"
-                        />
-                        {/* <input type="checkbox" value="synthwave" className="toggle theme-controller" /> */}
+                        <input type="text" placeholder="Search" className="input bg-white text-black input-success input-bordered w-24 md:w-auto"/>
                     </ul>
                 </div>
             </div>
@@ -74,8 +53,8 @@ function Home() {
 
                            
                             <div className="flex gap-4">
-                                <button className="btn btn-lg btn-primary">Get Started Free</button>
-                                <button className="btn btn-lg btn-primary">Create Your First Invoice</button>
+                                <Link to="/dashboard" className="text-white !no-underline"><button className="btn btn-lg btn-primary">Create Your First Invoice</button>
+                            </Link>
                             </div>
                         </div>
                     </div>
@@ -112,8 +91,6 @@ function Home() {
                         </div>
                     </div>
             </div>
-
-
         </div>
     );
 }

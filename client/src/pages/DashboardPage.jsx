@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import InvoiceTable from "../components/InvoiceTable";
 import NewInvoice from "../components/NewInvoice";
 import { Link } from "react-router-dom";
-import clearPayLogo from "../assets/clearpayLogo.png";
+import logo from "../assets/balanceBookLogo.png";
 
 function DashboardPage() {
     const [invoices, setInvoices] = useState([]);
@@ -73,22 +73,18 @@ function DashboardPage() {
     return (
         <div className="bg-gray-900 min-h-screen text-white">
             {/* Navbar */}
-            <div className="navbar bg-gray-800 text-white shadow-2xl">
-                <div className="flex-1">
-                    <img src={clearPayLogo} className="h-20 md:h-40" />
+            <div className="navbar bg-gray-800 text-white shadow-sm">
+                <div className="flex-1 h-25 flex items-center">
+                    <img src={logo} className="h-42 w-auto" />
                 </div>
-                <div className="flex gap-2 mr-10">
-                    <ul className="menu menu-horizontal gap-8 text-lg md:text-md">
+                <div className="flex gap-2">
+                    <ul className="menu menu-horizontal gap-8 text-lg md:text-md items-center">
                         <li>
-                            <Link to="/home" className="text-white !no-underline">
-                                Home
-                            </Link>
+                        <Link to="/home" className="text-white !no-underline">
+                            Home
+                        </Link>
                         </li>
-                        <input
-                            type="text"
-                            placeholder="Search"
-                            className="input bg-white text-black input-info input-bordered w-24 md:w-auto"
-                        />
+                        <input type="text" placeholder="Search" className="input bg-white text-black input-success input-bordered w-24 md:w-auto"/>
                     </ul>
                 </div>
             </div>
@@ -96,8 +92,6 @@ function DashboardPage() {
             {/* Page Header */}
             <div>
                 <h1 className="text-5xl text-left ml-15.5 mt-10 mb-24">Invoicing</h1>
-
-
 
                 {/* Summary Cards */}
                 <div className="flex justify-center mb-12">
@@ -143,7 +137,7 @@ function DashboardPage() {
             </div>
 
             {/* Invoice Table & New Invoice */}
-            <div className="flex flex-col p-8 gap-8 mx-auto my-0 border border-solid border-black/25">
+            <div className="flex flex-col p-8 gap-8 mx-auto my-0">
                 <NewInvoice onAdd={handleAddInvoice} />
                 <div>
                     <InvoiceTable invoices={sortedInvoices} onDelete={handleDeleteInvoice} />
