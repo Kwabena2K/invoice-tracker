@@ -24,7 +24,7 @@ function Home() {
 
     return (
         <div className="bg-gray-900">
-            <div className="navbar text-white shadow-sm">
+            <div className="navbar bg-gray-800 text-white shadow-sm">
                 
                 <div className="flex-1">
                     <img src={clearPayLogo} className="h-20 md:h-40" />
