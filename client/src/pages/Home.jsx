@@ -23,8 +23,8 @@ function Home() {
 
 
     return (
-        <div>
-            <div className="navbar bg-base-200 text-white shadow-sm">
+        <div className="bg-gray-900">
+            <div className="navbar text-white shadow-sm">
                 
                 <div className="flex-1">
                     <img src={clearPayLogo} className="h-20 md:h-40" />
@@ -64,7 +64,7 @@ function Home() {
                 <div className="hero-overlay"></div>
                     <div className="hero-content text-left text-neutral-content">
                         <div className="max-w-md">
-                            <h1 className="text-[3rem] leading-none font-bold">
+                            <h1 className="text-[3rem] leading-none  w font-bold">
                                 Track Invoices. <br />See Your Balance. Get Paid Faster.
                             </h1>
                             {/* whitespace-nowrap */}
@@ -83,28 +83,28 @@ function Home() {
 
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <div className="card bg-base-200 shadow-md p-6 cursor-pointer transition delay-10 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
+                    <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-100 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faFileInvoice} size="3x"/>
                             <h2 className="card-title">Create & Send Invoices</h2>
                             <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                         </div>
                     </div>
-                    <div className="card bg-base-200 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
+                    <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                              <FontAwesomeIcon icon={faClock} size="3x"/>
                             <h2 className="card-title">Track Payment Status</h2>
                             <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                         </div>
                     </div>
-                    <div className="card bg-base-200 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
+                    <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faCalculator} size="3x" />
                             <h2 className="card-title">Automatic Running Balance</h2>
                             <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                         </div>
                     </div>
-                    <div className="card bg-base-200 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
+                    <div className="card bg-gray-800 shadow-md p-6 cursor-pointer transition delay-100 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-primary">
                         <div className="card-body items-center text-center">
                             <FontAwesomeIcon icon={faWallet} size="3x"/>
                             <h2 className="card-title">Multiple Currency Support</h2>

@@ -71,9 +71,9 @@ function DashboardPage() {
     const sortedInvoices = [...invoices].sort((a, b) => new Date(a.due_date) - new Date(b.due_date));
 
     return (
-        <div className="bg-base-200 min-h-screen text-white">
+        <div className="bg-gray-900 min-h-screen text-white">
             {/* Navbar */}
-            <div className="navbar bg-base-100 text-white shadow-2xl">
+            <div className="navbar bg-gray-800 text-white shadow-2xl">
                 <div className="flex-1">
                     <img src={clearPayLogo} className="h-20 md:h-40" />
                 </div>
