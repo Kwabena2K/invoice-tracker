@@ -18,6 +18,7 @@ function InvoiceTable({ invoices, onDelete }) {
 						<th className="border border-gray-400">Amount</th>
 						<th className="border border-gray-400">Status</th>
 						<th className="border border-gray-400">Action</th>
+						<th className="border border-gray-400">View PDF</th>
 						<th className="border border-gray-400">Running Balance</th>
 						
 					</tr>
