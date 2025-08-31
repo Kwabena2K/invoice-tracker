@@ -19,6 +19,7 @@ function InvoiceTable({ invoices, onDelete }) {
 						<th className="border border-gray-400">Status</th>
 						<th className="border border-gray-400">Action</th>
 						<th className="border border-gray-400">Running Balance</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -85,6 +86,8 @@ function InvoiceTable({ invoices, onDelete }) {
 									>
 										Delete
 									</button>
+								</td>
+								<td className="border border-gray-400"> {invoice.file_url ? ( <a href={invoice.file_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline"> View PDF </a> ) : ("No file")}
 								</td>
 								<td className="border border-gray-400 font-bold">
 									${runningBalance.toFixed(2)}
