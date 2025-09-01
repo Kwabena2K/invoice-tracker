@@ -24,35 +24,19 @@ function DashboardPage() {
 
 
     const handleDeleteInvoice = async (invoiceId) => {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices/${invoiceId}`, {
-            method: "DELETE",
-        });
-        if (!response.ok) throw new Error("Failed to delete invoice");
-
-
-        setInvoices(prev => prev.filter(inv => inv.id !== invoiceId));
-
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices/${invoiceId}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) throw new Error("Failed to delete invoice");
+            setInvoices(prev => prev.filter(inv => inv.id !== invoiceId));
+        } catch (err) {
+            console.error(err);
+        }
     };
 
-    const handleAddInvoice = async (formData) => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    invoice: {
-                        ...formData,
-                        amount: parseFloat(formData.amount),
-                    }
-                }),
-            });
-            if (!response.ok) throw new Error("Failed to create invoice");
-
-            const savedInvoice = await response.json();
-            setInvoices(prevInvoices => [savedInvoice, ...prevInvoices]);
-        } catch (error) {
-            console.error(error);
-        }
+    const handleAddInvoice = (savedInvoice) => {
+        setInvoices(prev => [savedInvoice, ...prev]);
     };
 
     const totalOpen = invoices.filter(inv => inv.status === 'open').length;
@@ -80,11 +64,11 @@ function DashboardPage() {
                 <div className="flex gap-2">
                     <ul className="menu menu-horizontal gap-8 text-lg md:text-md items-center">
                         <li>
-                        <Link to="/home" className="text-white !no-underline">
-                            Home
-                        </Link>
+                            <Link to="/home" className="text-white !no-underline">
+                                Home
+                            </Link>
                         </li>
-                        <input type="text" placeholder="Search" className="input bg-white text-black input-success input-bordered w-24 md:w-auto"/>
+                        <input type="text" placeholder="Search" className="input bg-white text-black input-success input-bordered w-24 md:w-auto" />
                     </ul>
                 </div>
             </div>
