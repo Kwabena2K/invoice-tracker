@@ -24,16 +24,14 @@ It supports user authentication (JWT-based) and invoice CRUD functionality.
 
 ## ⚙️ Installation & Setup
 
-### Backend (Rails API)
+### Frontend (React)
 ```bash
-# Navigate to backend folder
-cd invoice_tracker_backend
+# Navigate to frontend folder
+cd client
 
 # Install dependencies
-bundle install
+npm install
 
-# Setup database
-rails db:create db:migrate
+# Start React app
+npm run dev
 
-# Start Rails server
-rails s
