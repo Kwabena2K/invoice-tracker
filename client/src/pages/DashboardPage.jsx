@@ -69,10 +69,29 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
         }
     };
 
+
+    const handleLogout = async () => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/users/sign_out`, {
+                method: "DELETE",
+                credentials: "include",
+            });
+
+            if (!res.ok) throw new Error("Failed to log out");
+
+            setUser(null); // clear user state in App
+            navigate("/login", { replace: true }); // redirect to login
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+    };
+
+
     // Safe invoices array
     const safeInvoices = Array.isArray(invoices) ? invoices : [];
 
-    
+
     const totalAmount = useMemo(
         () => safeInvoices.reduce((sum, inv) => sum + (Number(inv.amount) || 0), 0),
         [safeInvoices]
@@ -116,9 +135,17 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
                     <img src={logo} className="h-42 w-auto" />
                 </div>
                 <div className="flex gap-2">
-                    <ul className="menu menu-horizontal gap-8 text-lg md:text-md items-center">
+                    <ul className="menu menu-horizontal gap-2 text-lg md:text-md items-center">
                         <li>
                             <Link to="/home" className="text-white !no-underline">Home</Link>
+                        </li>
+                        <li>
+                            <button
+                                onClick={handleLogout}
+                                className="btn btn-active btn-error"
+                            >
+                                Logout
+                            </button>
                         </li>
                         <input
                             type="text"
