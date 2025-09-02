@@ -41,26 +41,34 @@ function NewInvoice({ onAdd }) {
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
         method: "POST",
+        credentials: "include",
         body: form,
       });
 
       const savedInvoice = await res.json();
 
       if (!res.ok) {
-        const msg = savedInvoice.errors ? savedInvoice.errors.join(", ") : "Unknown error";
+        const msg = savedInvoice.errors
+          ? savedInvoice.errors.join(", ")
+          : "Unknown error";
         throw new Error(msg);
       }
+
+      
+      const newInvoice = Array.isArray(savedInvoice) ? savedInvoice[0] : savedInvoice;
 
       // Reset form
       setFormData(initialFormData);
 
       // Add the new invoice to state
-      onAdd(savedInvoice);
+      onAdd(newInvoice);
+
     } catch (err) {
       console.error(err);
       alert(err.message);
     }
   };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

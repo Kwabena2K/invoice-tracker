@@ -1,70 +1,68 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login({ setInvoices, setUser }) {
+function Login({ setUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const naviagte = useNavigate();
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError("");
+        setError(null);
 
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/users/sign_in`, {
                 method: "POST",
+                credentials: "include", // needed for cookie error in console
                 headers: { "Content-Type": "application/json" },
-                credentials: "include",
                 body: JSON.stringify({ user: { email, password } }),
             });
 
-            if (!res.ok) {
-                setError("Your email or password is invalid");
+            if (res.status === 401) {
+                setError("Invalid credentials");
                 return;
             }
 
-            const invoicesRes = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
-                method: "GET",
-                credentials: "include",
-            });
-            const data = await invoicesRes.json();
-            setInvoices(data);
-            setUser(email);
-            Navigate("/dashboard");
+            if (!res.ok) throw new Error("Login failed");
+
+            const data = await res.json();
+            if (!data || !data.user) throw new Error("Invalid response from server");
+
+            // Set user state
+            setUser(data.user);
+
+            // Redirecting to dashboard
+            navigate("/dashboard");
         } catch (err) {
             console.error(err);
-            setError("An error has occurred");
+            setError(err.message || "An unexpected error occurred");
         }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-900">
-            <form
-                onSubmit={handleLogin}
-                className="flex flex-col gap-4 p-8 rounded-md bg-gray-800 text-white w-full max-w-sm"
-            >
-                <h2 className="text-2xl font-semibold text-center">Login</h2>
-                {error && <p className="text-red-500">{error}</p>}
+        <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+            <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded shadow-md w-96">
+                <h2 className="text-2xl mb-6">Login</h2>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
                 <input
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="p-2 rounded-md bg-gray-700 text-white"
+                    className="input w-full mb-4"
+                    required
                 />
                 <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="p-2 rounded-md bg-gray-700 text-white"
+                    className="input w-full mb-4"
+                    required
                 />
-                <button
-                    type="submit"
-                    className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-md font-semibold"
-                >
-                    Log In
+                <button type="submit" className="btn w-full btn-primary">
+                    Login
                 </button>
             </form>
         </div>
