@@ -136,12 +136,42 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
                 {/* Summary Cards */}
                 <div className="flex justify-center mb-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-10 gap-6 max-w-6xl w-full">
+
                         {/* All invoices */}
-                        <SummaryCard title="All Invoices" count={safeInvoices.length} total={totalAmount} />
-                        <SummaryCard title="Open Invoices" count={totalOpen} total={totalOpenAmount} />
-                        <SummaryCard title="Overdue" count={totalOverdue} total={totalOverdueAmount} />
-                        <SummaryCard title="Pending" count={totalPending} total={totalPendingAmount} />
-                        <SummaryCard title="Paid" count={totalPaid} total={totalPaidAmount} />
+                        <div className="p-6 text-center col-span-1 sm:col-span-2 rounded-lg bg-white text-gray-800 shadow-md border-4 border-black hover:text-white hover:bg-gray-400 transition-all duration-300 cursor-pointer">
+                            <h5 className="text-lg font-semibold mb-2">All Invoices</h5>
+                            <p className="text-2xl font-bold">{invoices.length}</p>
+                            <p className="text-sm mt-1">Total: ${totalAmount.toFixed(2)}</p>
+                        </div>
+
+                        {/* Open invoices */}
+                        <div className="p-6 text-center col-span-1 sm:col-span-2 rounded-lg bg-white text-gray-800 shadow-md hover:bg-info hover:text-white border-4 border-black hover:shadow-lg transition-all duration-300 cursor-pointer">
+                            <h5 className="text-lg font-semibold mb-2">Open Invoices</h5>
+                            <p className="text-2xl font-bold">{totalOpen}</p>
+                            <p className="text-sm mt-1">Total: ${totalOpenAmount.toFixed(2)}</p>
+                        </div>
+
+                        {/* Overdue */}
+                        <div className="col-span-1 sm:col-span-2 p-6 text-center rounded-lg bg-white text-gray-800 shadow-md hover:bg-warning hover:text-white border-4 border-black hover:shadow-lg transition-all duration-300 cursor-pointer">
+                            <h5 className="text-lg font-semibold mb-2">Overdue</h5>
+                            <p className="text-2xl font-bold">{totalOverdue}</p>
+                            <p className="text-sm mt-1">Total: ${totalOverdueAmount.toFixed(2)}</p>
+                        </div>
+
+                        {/* Pending */}
+                        <div className="p-6 text-center col-span-1 sm:col-span-2 rounded-lg bg-white text-gray-800 shadow-md border-4 border-black hover:bg-error hover:text-white transition-all duration-300 cursor-pointer">
+                            <h5 className="text-lg font-semibold mb-2 ">Pending</h5>
+                            <p className="text-2xl font-bold">{totalPending}</p>
+                            <p className="text-sm hover:text-white mt-1">Total: ${totalPendingAmount.toFixed(2)}</p>
+                        </div>
+
+                        {/* Paid */}
+                        <div className="p-6 text-center col-span-1 sm:col-span-2 rounded-lg bg-white text-gray-800 hover:bg-green-500 hover:text-white  shadow-md border-4 border-black hover:shadow-lg transition-all duration-300 cursor-pointer">
+                            <h5 className="text-lg font-semibold mb-2">Paid</h5>
+                            <p className="text-2xl font-bold">{totalPaid}</p>
+                            <p className="text-sm mt-1">Total: ${totalPaidAmount.toFixed(2)}</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -150,17 +180,6 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
                 <NewInvoice onAdd={handleAddInvoice} />
                 <InvoiceTable invoices={sortedInvoices} onDelete={handleDeleteInvoice} />
             </div>
-        </div>
-    );
-}
-
-
-function SummaryCard({ title, count, total }) {
-    return (
-        <div className="p-6 text-center col-span-1 sm:col-span-2 rounded-lg bg-white text-gray-800 shadow-md border-4 border-black hover:text-white hover:bg-gray-400 transition-all duration-300 cursor-pointer">
-            <h5 className="text-lg font-semibold mb-2">{title}</h5>
-            <p className="text-2xl font-bold">{count}</p>
-            <p className="text-sm mt-1">Total: ${total.toFixed(2)}</p>
         </div>
     );
 }

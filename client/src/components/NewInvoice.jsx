@@ -13,28 +13,29 @@ const initialFormData = {
 
 function NewInvoice({ onAdd }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
 
-  function isFormValid(formData) {
+  function isFormValid(data) {
     return (
-      formData.client_name.trim() &&
-      formData.number.trim() &&
-      formData.currency &&
-      formData.status &&
-      formData.purchase_order_number &&
-      formData.due_date &&
-      formData.amount &&
-      !isNaN(parseFloat(formData.amount)) &&
-      parseFloat(formData.amount) > 0
+      data.client_name.trim() &&
+      data.number.trim() &&
+      data.currency &&
+      data.status &&
+      data.purchase_order_number &&
+      data.due_date &&
+      data.amount &&
+      !isNaN(parseFloat(data.amount)) &&
+      parseFloat(data.amount) > 0
     );
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isFormValid(formData)) return;
 
+    setLoading(true);
     try {
       const form = new FormData();
-
-      // Append all form fields
       Object.entries(formData).forEach(([key, value]) => {
         if (value) form.append(`invoice[${key}]`, value);
       });
@@ -48,27 +49,21 @@ function NewInvoice({ onAdd }) {
       const savedInvoice = await res.json();
 
       if (!res.ok) {
-        const msg = savedInvoice.errors
-          ? savedInvoice.errors.join(", ")
-          : "Unknown error";
+        const msg = savedInvoice.errors?.join(", ") || "Unknown error";
         throw new Error(msg);
       }
 
-      
       const newInvoice = Array.isArray(savedInvoice) ? savedInvoice[0] : savedInvoice;
 
-      // Reset form
-      setFormData(initialFormData);
-
-      // Add the new invoice to state
-      onAdd(newInvoice);
-
+      setFormData(initialFormData); // reset form
+      onAdd(newInvoice); // add to dashboard state
     } catch (err) {
       console.error(err);
       alert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -94,7 +89,6 @@ function NewInvoice({ onAdd }) {
             onChange={handleChange}
             className="input w-full"
           />
-
           <input
             type="text"
             name="number"
@@ -103,7 +97,6 @@ function NewInvoice({ onAdd }) {
             onChange={handleChange}
             className="input w-full"
           />
-
           <input
             type="text"
             name="purchase_order_number"
@@ -112,7 +105,6 @@ function NewInvoice({ onAdd }) {
             onChange={handleChange}
             className="input w-full"
           />
-
           <select
             name="currency"
             value={formData.currency}
@@ -123,7 +115,6 @@ function NewInvoice({ onAdd }) {
             <option value="CAD">CAD</option>
             <option value="USD">USD</option>
           </select>
-
           <select
             name="status"
             value={formData.status}
@@ -136,7 +127,6 @@ function NewInvoice({ onAdd }) {
             <option value="overdue">Overdue</option>
             <option value="open">Open</option>
           </select>
-
           <input
             type="date"
             name="due_date"
@@ -144,7 +134,6 @@ function NewInvoice({ onAdd }) {
             onChange={handleChange}
             className="input w-full"
           />
-
           <input
             type="number"
             name="amount"
@@ -153,7 +142,6 @@ function NewInvoice({ onAdd }) {
             onChange={handleChange}
             className="input w-full"
           />
-
           <textarea
             name="notes"
             placeholder="Notes"
@@ -167,9 +155,9 @@ function NewInvoice({ onAdd }) {
       <button
         type="submit"
         className="btn btn-success btn-lg w-full"
-        disabled={!isFormValid(formData)}
+        disabled={!isFormValid(formData) || loading}
       >
-        Send Invoice
+        {loading ? "Sending..." : "Send Invoice"}
       </button>
     </form>
   );

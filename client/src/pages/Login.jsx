@@ -5,38 +5,37 @@ function Login({ setUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError(null);
+        setLoading(true);
 
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/users/sign_in`, {
                 method: "POST",
-                credentials: "include", // needed for cookie error in console
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ user: { email, password } }),
             });
 
-            if (res.status === 401) {
-                setError("Invalid credentials");
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error || "Invalid credentials");
+                setLoading(false);
                 return;
             }
 
-            if (!res.ok) throw new Error("Login failed");
-
-            const data = await res.json();
-            if (!data || !data.user) throw new Error("Invalid response from server");
-
-            // Set user state
             setUser(data.user);
-
-            // Redirecting to dashboard
-            navigate("/dashboard");
+            navigate("/dashboard"); // go to dashboard
         } catch (err) {
             console.error(err);
             setError(err.message || "An unexpected error occurred");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -44,6 +43,7 @@ function Login({ setUser }) {
         <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
             <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded shadow-md w-96">
                 <h2 className="text-2xl mb-6">Login</h2>
+
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <input
                     type="email"
@@ -61,8 +61,12 @@ function Login({ setUser }) {
                     className="input w-full mb-4"
                     required
                 />
-                <button type="submit" className="btn w-full btn-primary">
-                    Login
+                <button
+                    type="submit"
+                    className="btn w-full btn-primary"
+                    disabled={loading}
+                >
+                    {loading ? "Logging in..." : "Login"}
                 </button>
             </form>
         </div>
