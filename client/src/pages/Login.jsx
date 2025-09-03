@@ -16,8 +16,7 @@ function Login({ setUser }) {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/users/sign_in`, {
                 method: "POST",
-                credentials: "include",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
                 body: JSON.stringify({ user: { email, password } }),
             });
 
@@ -29,8 +28,10 @@ function Login({ setUser }) {
                 return;
             }
 
+            // Store token in localStorage
+            localStorage.setItem("token", data.user.token);
             setUser(data.user);
-            navigate("/dashboard"); // go to dashboard
+            navigate("/dashboard");
         } catch (err) {
             console.error(err);
             setError(err.message || "An unexpected error occurred");
@@ -43,7 +44,6 @@ function Login({ setUser }) {
         <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
             <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded shadow-md w-96">
                 <h2 className="text-2xl mb-6">Login</h2>
-
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <input
                     type="email"

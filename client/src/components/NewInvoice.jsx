@@ -40,23 +40,19 @@ function NewInvoice({ onAdd }) {
         if (value) form.append(`invoice[${key}]`, value);
       });
 
+      const token = localStorage.getItem("token");
       const res = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
         method: "POST",
-        credentials: "include",
+        headers: { Authorization: `Bearer ${token}` },
         body: form,
       });
 
       const savedInvoice = await res.json();
+      if (!res.ok) throw new Error(savedInvoice.errors?.join(", ") || "Unknown error");
 
-      if (!res.ok) {
-        const msg = savedInvoice.errors?.join(", ") || "Unknown error";
-        throw new Error(msg);
-      }
-
-      const newInvoice = Array.isArray(savedInvoice) ? savedInvoice[0] : savedInvoice;
 
       setFormData(initialFormData); // reset form
-      onAdd(newInvoice); // add to dashboard state
+      onAdd(savedInvoice); // add to dashboard state
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -65,10 +61,7 @@ function NewInvoice({ onAdd }) {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   return (
     <form

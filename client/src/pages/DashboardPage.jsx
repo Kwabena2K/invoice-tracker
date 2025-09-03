@@ -15,8 +15,8 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
         setLoading(true);
         setError(null);
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, {
-                credentials: "include",
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/invoices`, { headers: { Authorization: `Bearer ${token}` }
             });
 
             if (res.status === 401) {
@@ -54,9 +54,10 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
     // Delete invoice
     const handleDeleteInvoice = async (invoiceId) => {
         try {
+            const token = localStorage.getItem("token");
             const res = await fetch(`${import.meta.env.VITE_API_URL}/invoices/${invoiceId}`, {
                 method: "DELETE",
-                credentials: "include",
+                headers: { Authorization: `Bearer ${token}` }
             });
 
             if (!res.ok) throw new Error("Failed to delete invoice");
@@ -72,9 +73,10 @@ function DashboardPage({ invoices: propInvoices = [], setUser, setInvoices: setP
 
     const handleLogout = async () => {
         try {
+            const token = localStorage.getItem("token");
             const res = await fetch(`${import.meta.env.VITE_API_URL}/users/sign_out`, {
                 method: "DELETE",
-                credentials: "include",
+                headers: { Authorization: `Bearer ${token}` }
             });
 
             if (!res.ok) throw new Error("Failed to log out");
